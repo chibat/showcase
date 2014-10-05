@@ -1,0 +1,6 @@
+# TODO
+
+* lombok gradleでeclipseの設定
+* formatter gradleでeclipseの設定
+
+

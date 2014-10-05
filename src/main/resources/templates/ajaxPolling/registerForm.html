@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="layout">
+  <head>
+    <title>Ajax polling - register : showcase</title>
+  </head>
+  <body>
+    <section layout:fragment="content">
+      <h2><a href="/ajaxPolling/registerForm">Ajax polling - register</a></h2>
+<form class="form-horizontal" role="form" method="post" action="/ajaxPolling/register">
+  <div th:if="${messageFlag == true}" class="alert alert-success" role="alert">Registered.</div>
+  <div class="form-group">
+    <label for="inputArg1" class="col-sm-2 control-label">Arg1</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputArg1" placeholder="Arg1" name="arg1" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputArg2" class="col-sm-2 control-label">Arg2</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputArg2" placeholder="Arg2" name="arg2" />
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Register</button>
+    </div>
+  </div>
+</form>
+    </section>
+  </body>
+</html>
