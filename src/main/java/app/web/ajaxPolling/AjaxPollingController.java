@@ -75,8 +75,6 @@ public class AjaxPollingController {
     /**
      * API的に呼んでもらうメソッド
      * 
-     * TODO Post にする
-     * 
      * @param arg1
      * @param arg2
      * @return

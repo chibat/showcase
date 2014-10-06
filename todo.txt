@@ -2,5 +2,6 @@
 
 * lombok gradleでeclipseの設定
 * formatter gradleでeclipseの設定
+* TypeScript のbuild設定
 
 
