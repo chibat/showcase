@@ -9,8 +9,16 @@ eclipse {
         ]
         defaultOutputDir = file('build/classes/main')
     }
+  project {
+    natures 'com.palantir.typescript.typeScriptNature'
+    buildCommand 'com.palantir.typescript.typeScriptBuilder'
+  }
+  copy{
+    from 'eclipse/com.palantir.typescript.prefs'
+    into '.settings'
+  }
 }
- 
+
 eclipseJdt {
     def clos = []
  

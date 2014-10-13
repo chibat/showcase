@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.val;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,9 @@ public class AjaxPollingController {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${server.port}")
+    private int port;
+
     //
     // html
     //
@@ -56,16 +60,20 @@ public class AjaxPollingController {
         map.add("arg1", form.getArg1());
         map.add("arg2", form.getArg2());
         // Mapに詰め替えないで、formのまま実行できないものか。
-        restTemplate.postForEntity(
-                "http://localhost:8080/ajaxPolling/register.json", map,
-                String.class);
+        restTemplate.postForEntity("http://localhost:" + port
+                + "/ajaxPolling/register.json", map, String.class);
         model.addAttribute("messageFlag", true);
         return "ajaxPolling/registerForm";
     }
 
-    @RequestMapping("/get")
-    public String get() {
-        return "ajaxPolling/get";
+    @RequestMapping("/getKo")
+    public String getKo() {
+        return "ajaxPolling/getKo";
+    }
+
+    @RequestMapping("/getNg")
+    public String getNg() {
+        return "ajaxPolling/getNg";
     }
 
     //
