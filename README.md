@@ -12,6 +12,7 @@
   * jQuery
   * Bootstrap 3
   * AngularJS 1.3
+  * Knockout.js 3.2
 
 ## Run
 
