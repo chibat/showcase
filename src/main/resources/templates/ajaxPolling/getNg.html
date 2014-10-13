@@ -6,7 +6,7 @@
   <head>
     <title>Ajax polling - get : showcase</title>
     <script src="/webjars/angularjs/1.3.0-rc.3/angular.min.js"></script>
-    <script src="/js/ajaxPolling.js"></script>
+    <script src="/ts/ajaxPollingNg.js"></script>
   </head>
   <body ng-controller="AjaxPollingCtrl">
     <section layout:fragment="content">
@@ -26,7 +26,11 @@
       <table class="table table-hover" ng-show="tableFlag">
         <tr><th>ID</th><th>Request Time</th><th>Arg1</th><th>Arg1</th><th></th></tr>
         <tr ng-repeat="r in records">
-          <td>{{r.id}}</td><td>{{r.requestTime}}</td><td>{{r.arg1}}</td><td>{{r.arg2}}</td><td><a class="btn btn-default" ng-click="dispDetail(r)">Detail</a></td>
+          <td>{{r.id}}</td>
+          <td>{{r.requestTime}}</td>
+          <td>{{r.arg1}}</td>
+          <td>{{r.arg2}}</td>
+          <td><a class="btn btn-default" ng-click="dispDetail(r)">Detail</a></td>
         </tr>
       </table>
       <div ng-show="detailFlag">
