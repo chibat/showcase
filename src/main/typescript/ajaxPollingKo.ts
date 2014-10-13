@@ -30,7 +30,7 @@ module ajaxPolling {
                 type: "POST",
                 data: "id=" + data.id,
                 async: false,
-                success: (data) => {
+                success: (data: any[]) => {
                     if (data.length > 0) {
                         this.requestCount(data.length);
                         this.records(data);
@@ -45,7 +45,7 @@ module ajaxPolling {
             $.ajax({
                 url: "/ajaxPolling/get.json",
                 async: false,
-                success: (data) => {
+                success: (data: any[]) => {
                     if (data.length > 0) {
                         this.requestCount(data.length);
                         this.records(data);
