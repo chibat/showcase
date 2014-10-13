@@ -2,26 +2,31 @@ var interval = 10000;
 
 module ajaxPolling {
 
+    class Data {
+        id: number;
+        // etc
+    }
+
     class Vm {
 
         public requestCount = ko.observable<number>();
-        public records = ko.observableArray<any>();
+        public records = ko.observableArray<Data>();
         public visibleTable = ko.observable(false);
         public visibleDetail = ko.observable(false);
-        public detail = ko.observable<any>();
+        public detail = ko.observable<Data>();
 
         public disp = () => {
             this.visibleTable(true);
             this.visibleDetail(false);
         }
 
-        public dispDetail = (data: any): void => {
+        public dispDetail = (data: Data) => {
             this.detail(data);
             this.visibleTable(false);
             this.visibleDetail(true);
         }
 
-        public startProgress = (data: any) => {
+        public startProgress = (data: Data) => {
             this.visibleTable(false);
             this.visibleDetail(false);
 
@@ -30,7 +35,7 @@ module ajaxPolling {
                 type: "POST",
                 data: "id=" + data.id,
                 async: false,
-                success: (data: any[]) => {
+                success: (data: Data[]) => {
                     if (data.length > 0) {
                         this.requestCount(data.length);
                         this.records(data);
@@ -45,7 +50,7 @@ module ajaxPolling {
             $.ajax({
                 url: "/ajaxPolling/get.json",
                 async: false,
-                success: (data: any[]) => {
+                success: (data: Data[]) => {
                     if (data.length > 0) {
                         this.requestCount(data.length);
                         this.records(data);
