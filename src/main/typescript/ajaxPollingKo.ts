@@ -2,7 +2,7 @@ var interval = 10000;
 
 module ajaxPolling {
 
-    class Data {
+    class Record {
         id: number;
         // etc
     }
@@ -10,36 +10,36 @@ module ajaxPolling {
     class Vm {
 
         public requestCount = ko.observable<number>();
-        public records = ko.observableArray<Data>();
+        public records = ko.observableArray<Record>();
         public visibleTable = ko.observable(false);
         public visibleDetail = ko.observable(false);
-        public detail = ko.observable<Data>();
+        public detail = ko.observable<Record>();
 
         public disp = () => {
             this.visibleTable(true);
             this.visibleDetail(false);
         }
 
-        public dispDetail = (data: Data) => {
-            this.detail(data);
+        public dispDetail = (record: Record) => {
+            this.detail(record);
             this.visibleTable(false);
             this.visibleDetail(true);
         }
 
-        public startProgress = (data: Data) => {
+        public startProgress = (record: Record) => {
             this.visibleTable(false);
             this.visibleDetail(false);
 
             $.ajax({
                 url: "/ajaxPolling/startProgress.json",
                 type: "POST",
-                data: "id=" + data.id,
+                data: "id=" + record.id,
                 async: false,
-                success: (data: Data[]) => {
-                    if (data.length > 0) {
-                        this.requestCount(data.length);
-                        this.records(data);
-                    } else if (data.length === 0) {
+                success: (records: Record[]) => {
+                    if (records.length > 0) {
+                        this.requestCount(records.length);
+                        this.records(records);
+                    } else if (records.length === 0) {
                         this.requestCount(null);
                     }
                 },
@@ -50,11 +50,11 @@ module ajaxPolling {
             $.ajax({
                 url: "/ajaxPolling/get.json",
                 async: false,
-                success: (data: Data[]) => {
-                    if (data.length > 0) {
-                        this.requestCount(data.length);
-                        this.records(data);
-                    } else if (data.length === 0) {
+                success: (records: Record[]) => {
+                    if (records.length > 0) {
+                        this.requestCount(records.length);
+                        this.records(records);
+                    } else if (records.length === 0) {
                         this.requestCount(null);
                     }
                 },
